@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   result:{
-   fontSize: 35,
+   fontSize: 30,
    fontWeight: '600',
   },
   Text:{
-  fontSize: 25,
+  fontSize: 20,
    fontWeight: '500',
   }
 })

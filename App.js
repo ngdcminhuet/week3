@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import GameStatus from "./abc/GameStatus";
 import ButtonGame from "./abc/ButtonGame";
 import GameDisplay from "./abc/GameDisplay";
 import { CHOICES } from "./abc/constant";
 import { randomComputerChoice, getRoundOutcome } from "./abc/logicFunc";
+import Constants from "expo-constants";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,21 +26,19 @@ export default class App extends React.Component {
     const computerChoice = randomComputerChoice();
     const result = getRoundOutcome(foundChoice.name, computerChoice.name);
     const gameNum = this.state.totalgame + 1;
-    const numLose = this.state.totalLose;
+    /*const numLose = this.state.totalLose;
     const numTie = this.state.totalTie;
     const numWin = this.state.totalWin;
-    if(result === "Tie game!"){
+    if (result === "Tie game!") {
       //const numTie = this.state.totalTie;
-      this.setState({totalTie: numTie+1});
-    }
-    else if(result === "Victory!"){
+      this.setState({ totalTie: numTie + 1 });
+    } else if (result === "Victory!") {
       //const numWin = this.state.totalWin;
-      this.setState({totalTie: numWin+1});
-    }
-    else{
+      this.setState({ totalTie: numWin + 1 });
+    } else {
       //const numLose = this.state.totalLose;
-      this.setState({totalTie: numLose+1});
-    }
+      this.setState({ totalTie: numLose + 1 });
+    }*/
     this.setState({
       playerChoice: foundChoice,
       computerChoice,
@@ -80,6 +79,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: Constants.statusBarHeight,
     backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",

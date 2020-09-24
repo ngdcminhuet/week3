@@ -4,9 +4,9 @@ import { Text, View, StyleSheet, Image } from "react-native";
 function GameDisplay(props) {
   return (
     <View style={styles.column}>
-      <Text>{props.playName}</Text>
-      <Image source = {{uri : props.choice.uri}} style={styles.image}></Image>
-      <Text>Chosen</Text>
+      <Text style={styles.Text}>{props.playName}</Text>
+      <Image source={{ uri: props.choice.uri }} style={styles.image}></Image>
+      <Text style={styles.Text}>{props.choice.name}</Text>
     </View>
   );
 }
@@ -17,9 +17,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  image:{
+  image: {
     height: 150,
-    width: 150
-  }
+    width: 150,
+  },
+  Text: {
+    fontSize: 16,
+  },
 });
 export default GameDisplay;
