@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import GameStatus from "./abc/GameStatus";
 import ButtonGame from "./abc/ButtonGame";
 import GameDisplay from "./abc/GameDisplay";
 import { CHOICES } from "./abc/constant";
-import { randomComputerChoice, getRoundOutcome } from "./abc/logicFunc";
+import {
+  randomComputerChoice,
+  getRoundOutcome,
+  getNumResult,
+} from "./abc/logicFunc";
 import Constants from "expo-constants";
 
 export default class App extends React.Component {
@@ -22,37 +26,31 @@ export default class App extends React.Component {
   }
   onPressButton = (playerChoice) => {
     const foundChoice = CHOICES.find((choice) => choice.name === playerChoice);
-    //console.log(foundChoice);
+
     const computerChoice = randomComputerChoice();
     const result = getRoundOutcome(foundChoice.name, computerChoice.name);
     const gameNum = this.state.totalgame + 1;
-    /*const numLose = this.state.totalLose;
-    const numTie = this.state.totalTie;
+    const numLose = this.state.totalLose;
     const numWin = this.state.totalWin;
-    if (result === "Tie game!") {
-      //const numTie = this.state.totalTie;
-      this.setState({ totalTie: numTie + 1 });
-    } else if (result === "Victory!") {
-      //const numWin = this.state.totalWin;
-      this.setState({ totalTie: numWin + 1 });
-    } else {
-      //const numLose = this.state.totalLose;
-      this.setState({ totalTie: numLose + 1 });
-    }*/
+    const numTie = this.state.totalTie;
+    const a = getNumResult(result, numLose, numTie, numWin);
+    console.log(a);
     this.setState({
       playerChoice: foundChoice,
       computerChoice,
       result,
       totalgame: gameNum,
-      /*totalWin: numWin,
-      totalLose: numLose,
-      totalTie: numTie,*/
+      totalWin: a[0],
+      totalLose: a[1],
+      totalTie: a[2],
     });
   };
   render() {
-    //console.log(this.state.playerChoice);
     return (
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+        
+      >
         <View style={styles.GameStatus}>
           <GameStatus
             result={this.state.result}
@@ -81,8 +79,8 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: Constants.statusBarHeight,
     backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
+    //justifyContent: "center",
+    //alignItems: "center",
   },
 
   GameDisplay: {
@@ -91,17 +89,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    //borderWidth: 2,
+    borderColor: "grey",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   ButtonGame: {
-    flex: 0.4,
+    flex: 0.3,
     //backgroundColor: 'yellow',
     justifyContent: "center",
     alignItems: "center",
   },
 
   GameStatus: {
-    flex: 0.2,
+    flex: 0.3,
     justifyContent: "center",
     alignItems: "center",
+    //backgroundColor: 'red',
   },
 });

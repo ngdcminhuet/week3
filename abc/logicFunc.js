@@ -1,9 +1,8 @@
-import {CHOICES} from './constant';
+import { CHOICES } from "./constant";
 const randomComputerChoice = () =>
   CHOICES[Math.floor(Math.random() * CHOICES.length)];
 
 const getRoundOutcome = (userChoice, computerChoice) => {
- 
   let result;
 
   if (userChoice === "Rock") {
@@ -20,5 +19,16 @@ const getRoundOutcome = (userChoice, computerChoice) => {
   return result;
 };
 
-
-export {randomComputerChoice, getRoundOutcome}
+const getNumResult = (result, numLose, numTie, numWin) => {
+  if (result === "Victory!") {
+    numWin += 1;
+  }
+  if (result === "Defeat!") {
+    numLose += 1;
+  }
+  if (result === "Tie game!") {
+    numTie += 1;
+  }
+  return [numWin, numLose, numTie];
+};
+export { randomComputerChoice, getRoundOutcome, getNumResult };
