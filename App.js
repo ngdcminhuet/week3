@@ -47,28 +47,33 @@ export default class App extends React.Component {
   };
   render() {
     return (
-      <View
-        style={styles.container}
-        
-      >
-        <View style={styles.GameStatus}>
-          <GameStatus
-            result={this.state.result}
-            totalgame={this.state.totalgame}
-            totalTie={this.state.totalTie}
-            totalWin={this.state.totalWin}
-            totalLose={this.state.totalLose}
-          />
-        </View>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("./assets/backGround.jpg")}
+          style={styles.image}
+        >
+          <View style={styles.GameStatus}>
+            <GameStatus
+              result={this.state.result}
+              totalgame={this.state.totalgame}
+              totalTie={this.state.totalTie}
+              totalWin={this.state.totalWin}
+              totalLose={this.state.totalLose}
+            />
+          </View>
 
-        <View style={styles.GameDisplay}>
-          <GameDisplay playName="Player" choice={this.state.playerChoice} />
-          <GameDisplay playName="Computer" choice={this.state.computerChoice} />
-        </View>
+          <View style={styles.GameDisplay}>
+            <GameDisplay playName="Player" choice={this.state.playerChoice} />
+            <GameDisplay
+              playName="Computer"
+              choice={this.state.computerChoice}
+            />
+          </View>
 
-        <View style={styles.ButtonGame}>
-          <ButtonGame onPressButton={this.onPressButton} choice={CHOICES} />
-        </View>
+          <View style={styles.ButtonGame}>
+            <ButtonGame onPressButton={this.onPressButton} choice={CHOICES} />
+          </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -77,7 +82,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight,
+   
     backgroundColor: "#fff",
     //justifyContent: "center",
     //alignItems: "center",
@@ -109,9 +114,15 @@ const styles = StyleSheet.create({
   },
 
   GameStatus: {
+    marginTop: Constants.statusBarHeight,
     flex: 0.3,
     justifyContent: "center",
     alignItems: "center",
     //backgroundColor: 'red',
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
 });

@@ -11,7 +11,17 @@ function GameStatus(props) {
       </View>
       <View style={styles.infoGame}>
         <View style={styles.result}>
-          <Text style={(props.result ==="Tie game!") ? (styles.textResult) : ((props.result ==="Victory!") ? styles.winColor : styles.loseColor)}>{props.result}</Text>
+          <Text
+            style={
+              props.result === "Tie game!"
+                ? styles.textResult
+                : props.result === "Victory!"
+                ? styles.winColor
+                : styles.loseColor
+            }
+          >
+            {props.result}
+          </Text>
           <Text style={styles.Text}>Game number : {props.totalgame}</Text>
         </View>
         <View style={styles.history}>
@@ -48,12 +58,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
+    fontWeight: "700",
   },
   Text: {
     fontSize: 20,
     fontWeight: "500",
     justifyContent: "center",
     alignItems: "center",
+    fontWeight: "700",
   },
   history: {
     flex: 0.7,
@@ -61,19 +73,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  textResult:{
+  textResult: {
     //color: '',
     fontSize: 25,
-    fontWeight: '500'
+    fontWeight: "700",
   },
   winColor: {
     fontSize: 25,
-    fontWeight: '500',
-    color: 'green',
+    fontWeight: "700",
+    color: "green",
   },
-  loseColor:{
+  loseColor: {
     fontSize: 25,
-    fontWeight: '500',
-    color: 'red',
-  }
+    fontWeight: "700",
+    color: "red",
+  },
 });

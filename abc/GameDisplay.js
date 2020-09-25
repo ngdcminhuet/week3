@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     width: 150,
   },
   Text: {
-    fontSize: 16,
+    fontSize: 24,
+    fontWeight: "700"
   },
 });
 export default GameDisplay;
